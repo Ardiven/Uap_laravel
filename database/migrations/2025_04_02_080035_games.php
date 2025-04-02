@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('game', function (Blueprint $table){
+        Schema::create('games', function (Blueprint $table){
             $table->id() -> primary();
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->string('image');
             $table->bigInteger('developer');
             $table->timestamps();

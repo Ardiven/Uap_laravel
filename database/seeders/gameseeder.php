@@ -14,7 +14,8 @@ class gameseeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('game')->insert([
+        DB::table('games')->insert([
+            [
             'title' => 'Far Cry 2',
             'description' => 'Game Description',
             'image' => 'game_image/F2.jpg',
@@ -63,7 +64,7 @@ class gameseeder extends Seeder
             'created_at' => '2022-01-01',
             'developer' => 1,
         ]
-        );
+        ]);
         
     }
 }
