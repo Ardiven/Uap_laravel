@@ -16,9 +16,8 @@ return new class extends Migration
             $table->id() -> primary();
             $table->string('title');
             $table->string('description');
+            $table->string('image');
             $table->bigInteger('developer');
-            $table->string('genre');
-            $table->bigInteger('rating');
             $table->timestamps();
         });
         Schema::create('genre', function (Blueprint $table){
@@ -42,7 +41,7 @@ return new class extends Migration
             $table->id() -> primary();
             $table->bigInteger('game');
             $table->bigInteger('user');
-            $table->boolean('is_rating');
+            $table->bigInteger('rating');
             $table->timestamps();
         });
     }
