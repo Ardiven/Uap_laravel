@@ -1,19 +1,13 @@
 @props(['image', 'title', 'description'])
 
-
-    
-
-<div class="w-full sm:w-1/2 lg:w-1/3 p-4">
-    <div class="card bg-white shadow-lg rounded-lg flex flex-col min-h-full">
-        <!-- Gambar Fit -->
-        <img src="{{ asset('storage/' . $image) }}" class="w-full h-48 object-cover rounded-t-lg" alt="{{ $title }}">
-
-        <div class="p-4 flex flex-col flex-grow">
-            <h5 class="text-lg font-semibold">{{ $title }}</h5>
-            <!-- Deskripsi dengan flex-grow agar bisa sesuaikan panjang -->
-            <p class="text-gray-700">{{ Str::limit($description, 100) }}</p>
+<div class="flex px-3 py-3">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        <img class="w-full" src="{{ asset('storage/' . $image) }}" alt="{{ $title }}">
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">{{ $title }}</div>
+            <p class="text-gray-700 text-base">
+                {{ $description }}
+            </p>
         </div>
     </div>
 </div>
-
-
