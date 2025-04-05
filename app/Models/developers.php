@@ -9,4 +9,5 @@ class developers extends Model
     public function game(){
         return $this->hasMany(Games::class);
     }
+    
 }

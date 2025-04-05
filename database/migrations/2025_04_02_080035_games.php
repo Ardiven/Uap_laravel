@@ -17,30 +17,30 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('image');
-            $table->foreignId('dveloper')->constrained(table: 'developers');
+            $table->foreignId('developer_id')->constrained(table: 'developers');
             $table->timestamps();
         });
-        Schema::create('genre', function (Blueprint $table){
+        Schema::create('genres', function (Blueprint $table){
             $table ->id() -> primary();
             $table->string('name');
         });
         Schema::create('genre_details', function (Blueprint $table){
             $table->id() -> primary();
-            $table->foreignId('game')->constrained(table: 'games');
-            $table->foreignId('genre')->constrained(table: 'genre');
+            $table->foreignId('games_id')->constrained(table: 'games');
+            $table->foreignId('genre_id')->constrained(table: 'genres');
             $table->timestamps();
         });
-        Schema::create('review', function (Blueprint $table){
+        Schema::create('reviews', function (Blueprint $table){
             $table->id() -> primary();
             $table->string('content');
-            $table->foreignId('game')->constrained(table: 'games');
-            $table->foreignId('user')->constrained(table: 'users');
+            $table->foreignId('games_id')->constrained(table: 'games');
+            $table->foreignId('users_id')->constrained(table: 'users');
             $table->timestamps();
         });
-        Schema::create('library', function (Blueprint $table){
+        Schema::create('librarys', function (Blueprint $table){
             $table->id() -> primary();
-            $table->foreignId('game')->constrained(table: 'games');
-            $table->foreignId('user')->constrained(table: 'users');
+            $table->foreignId('games_id')->constrained(table: 'games');
+            $table->foreignId('users_id')->constrained(table: 'users');
             $table->bigInteger('rating');
             $table->timestamps();
         });
