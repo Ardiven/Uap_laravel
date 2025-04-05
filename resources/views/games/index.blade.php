@@ -1,5 +1,5 @@
 @extends('layout.app')
-<x-navbar></x-navbar>
+<x-navbar :menu="true"></x-navbar>
 @section('content')
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-3 py-3">
