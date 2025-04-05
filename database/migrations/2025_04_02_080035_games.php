@@ -27,7 +27,7 @@ return new class extends Migration
         Schema::create('genre_details', function (Blueprint $table){
             $table->id() -> primary();
             $table->foreignId('game')->constrained(table: 'games');
-            $table->bigInteger('genre');
+            $table->foreignId('genre')->constrained(table: 'genre');
             $table->timestamps();
         });
         Schema::create('review', function (Blueprint $table){
