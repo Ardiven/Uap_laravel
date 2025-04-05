@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('image');
-            $table->bigInteger('developer');
+            $table->unsignedInteger('developer');
             $table->timestamps();
         });
         Schema::create('genre', function (Blueprint $table){
@@ -26,21 +26,21 @@ return new class extends Migration
         });
         Schema::create('genre_details', function (Blueprint $table){
             $table->id() -> primary();
-            $table->bigInteger('game');
+            $table->foreignId('game')->constrained(table: 'games');
             $table->bigInteger('genre');
             $table->timestamps();
         });
         Schema::create('review', function (Blueprint $table){
             $table->id() -> primary();
             $table->string('content');
-            $table->bigInteger('game');
-            $table->bigInteger('user');
+            $table->foreignId('game')->constrained(table: 'games');
+            $table->foreignId('user')->constrained(table: 'users');
             $table->timestamps();
         });
         Schema::create('library', function (Blueprint $table){
             $table->id() -> primary();
-            $table->bigInteger('game');
-            $table->bigInteger('user');
+            $table->foreignId('game')->constrained(table: 'games');
+            $table->foreignId('user')->constrained(table: 'users');
             $table->bigInteger('rating');
             $table->timestamps();
         });
