@@ -20,7 +20,7 @@ class UsersController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
+            return redirect()->route('games.index');
         }
 
         return back()->withErrors(['email' => 'Email atau password salah']);

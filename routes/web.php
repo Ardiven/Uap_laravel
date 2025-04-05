@@ -14,4 +14,5 @@ Route::post('/register', [UsersController::class, 'register']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
-Route::get('/index', [GamesController::class, 'index']) ->name('index');
+Route::get('/games/index', [GamesController::class, 'index']) ->name('games.index');
+Route::get('/games/library', [GamesController::class, 'library'])->middleware('auth') ->name('games.library');

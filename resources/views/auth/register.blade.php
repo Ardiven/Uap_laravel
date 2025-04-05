@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="w-full flex justify-center">
-                <p>Sudah punya akun? <a href="{{ route('login') }}">Login</a></p>
+                <p>Sudah punya akun? <a href="{{ route('login') }}" class="hover:text-cyan-500">Login</a></p>
                 </div>
 
                 </div>
