@@ -18,7 +18,7 @@ class dev extends Seeder
             'email' => '4d7j0@example.com',
             'created_at' => '2022-01-01',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            
+            'image' => 'developer_image/713b3ba06efe2d128a44f4a11ac8a636.jpg',
         ]);
     }
 }

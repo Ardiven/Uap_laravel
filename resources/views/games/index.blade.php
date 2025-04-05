@@ -8,6 +8,9 @@
         :image="$game->image"
         :title="$game->title"
         :description="$game->description"
+        :genres="$game->genres"
+        :developer="$game->developer->name"
+        :dev_image="$game->developer->image"
     />
 @endforeach
 

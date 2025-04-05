@@ -10,10 +10,7 @@ class games extends Model
 {
     use HasFactory;
 
-    public function genre(): HasMany
-    {
-        return $this->hasMany(GenreDetails::class);
-    }
+
     public function library()
     {
         return $this->hasMany(Library::class);
@@ -27,9 +24,23 @@ class games extends Model
         return $this->belongsTo(developers::class);
     }
     // App\Models\Games.php
+    public function genreDetails()
+    {
+        return $this->hasMany(GenreDetails::class, 'games_id');
+    }
+    
+    // Akses langsung ke Genre lewat relasi genreDetails
     public function genres()
     {
-        return $this->belongsToMany(Genre::class, 'genre_details', 'games_id', 'genre_id');
+        return $this->hasManyThrough(
+            Genre::class,           // Target model
+            GenreDetails::class,    // Perantara
+            'games_id',             // FK di GenreDetails yang mengarah ke Games
+            'id',                   // PK di Genre (tujuan akhir)
+            'id',                   // PK di Games (sumber)
+            'genre_id'              // FK di GenreDetails yang mengarah ke Genre
+        );
     }
+    
 
 }

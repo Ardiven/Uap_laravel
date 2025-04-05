@@ -9,10 +9,13 @@ class GenreDetails extends Model
 {
     use HasFactory;
     public function game()
-    {
-        return $this->belongsTo(Games::class);
-    }
-    public function genre(){
-        return $this->belongsTo(Genre::class);
-    }
+{
+    return $this->belongsTo(Games::class, 'games_id');
+}
+
+public function genre()
+{
+    return $this->belongsTo(Genre::class, 'genre_id');
+}
+
 }
