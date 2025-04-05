@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('image');
-            $table->unsignedInteger('developer');
+            $table->foreignId('dveloper')->constrained(table: 'developers');
             $table->timestamps();
         });
         Schema::create('genre', function (Blueprint $table){
