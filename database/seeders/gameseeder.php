@@ -31,7 +31,7 @@ class gameseeder extends Seeder
         ],
         [
             'title' => 'Far Cry 4',
-            'description' => 'Game Description',
+            'description' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
             'image' => 'game_image/F4.jpg',
             'created_at' => '2022-01-01',
             'developer_id' => 1,
@@ -45,7 +45,7 @@ class gameseeder extends Seeder
         ],
         [
             'title' => 'Far Cry 6',
-            'description' => 'Game Description',
+            'description' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
             'image' => 'game_image/F6.jpg',
             'created_at' => '2022-01-01',
             'developer_id' => 1,
@@ -59,7 +59,7 @@ class gameseeder extends Seeder
         ],
         [
             'title' => 'Far Cry New Dawn',
-            'description' => 'Game Description',
+            'description' => 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
             'image' => 'game_image/Fnd.jpg',
             'created_at' => '2022-01-01',
             'developer_id' => 1,
