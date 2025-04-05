@@ -1,7 +1,7 @@
 @extends('layout.app')
-
-@section('content')
 <x-navbar></x-navbar>
+@section('content')
+
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-3 py-3">
     @foreach ($games as $game)
     <x-card 

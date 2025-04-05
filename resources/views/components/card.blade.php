@@ -32,9 +32,7 @@
                 @foreach ($genres as $genre)
                     <a href="#" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-950 hover:text-white cursor-pointer">
                         {{ $genre->name }}
-                    </@auth
-                        
-                    @endauth>
+                    </a>
                 @endforeach
             </div>
             @endif
