@@ -1,8 +1,10 @@
 <?php
 
+use Termwind\Components\Li;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsersController; 
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\UsersController; 
+use App\Http\Controllers\LibraryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,4 +17,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 Route::get('/games/index', [GamesController::class, 'index']) ->name('games.index');
-Route::get('/games/library', [GamesController::class, 'library'])->middleware('auth') ->name('games.library');
+Route::get('/games/library', [LibraryController::class, 'showLibrary'])-> middleware('auth')->name('games.library');
