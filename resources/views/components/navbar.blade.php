@@ -10,10 +10,19 @@
             <div class="hidden mt-2 mr-4 sm:inline-block">
                 <span></span>
             </div>
-
+            @auth
+            
+                <a href="#" class="space-y-4 xl:space-y-2 hover:scale-105 ">
+                    <img class="mx-auto rounded-full h-9 w-9" src="{{ asset('storage/' . Auth::user()->image) ?: '' }}" alt="author avatar">
+                    <h5 class="text-gray-900 flex justify-center items-center flex-col  space-y-3 text-lg font-medium leading-6">{{ Auth::user()->name }}</h5>
+                </a>
+          
+            @endauth            
+            @guest
             <a href="{{ route('login') }}"
                 class="text-white bg-gradient-to-r from-cyan-400 to-sky-500 hover:bg-gradient-to-br hover:scale-105 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 ">Log in</a>
-            @if($menu)
+            @endguest
+                @if($menu)
             <button data-collapse-toggle="mobile-menu-2" type="button"
 				class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
 				aria-controls="mobile-menu-2" aria-expanded="true">
@@ -31,7 +40,7 @@
 			</button>
         </div>
         <div class="items-center justify-between w-full lg:flex lg:w-auto lg:order-1 hidden" id="mobile-menu-2">
-    <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+    <ul class="flex flex-col mt-4 text-lg font-medium lg:flex-row lg:space-x-8 lg:mt-0">
         <li>
             <a href="{{ route('games.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:scale-105 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">Home</a>
         </li>

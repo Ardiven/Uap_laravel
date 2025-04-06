@@ -18,3 +18,5 @@ Route::get('/dashboard', function () {
 })->middleware('auth')->name('dashboard');
 Route::get('/games/index', [GamesController::class, 'index']) ->name('games.index');
 Route::get('/games/library', [LibraryController::class, 'showLibrary'])-> middleware('auth')->name('games.library');
+Route::get('/games/{id}', [GamesController::class, 'show'])->name('games.show');
+Route::post('/library/add/{game}', [LibraryController::class, 'addToLibrary'])->name('library.add');

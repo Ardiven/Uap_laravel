@@ -1,4 +1,4 @@
-@props(['image', 'title', 'description' => null, 'genres' => null, 'developer' => null, 'dev_image' => null, 'rating' => null, 'dev'=> null])
+@props(['image','id', 'title', 'description' => null, 'genres' => null, 'developer' => null, 'dev_image' => null, 'rating' => null, 'dev'=> null, 'url' => null])
 
 <div class="w-full max-w-xs bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
     {{-- Gambar --}}
@@ -9,7 +9,7 @@
     <div class="flex-1 px-4 py-3 flex flex-col justify-between">
         {{-- Title & Developer --}}
         <div class="flex items-start justify-between mb-3">
-            <a href="#" class="font-bold text-lg leading-snug text-gray-900 hover:text-cyan-500">{{ $title }}</a>
+            <a href="{{route('games.show', $id)}}" class="font-bold text-lg leading-snug text-gray-900 hover:text-cyan-500">{{ $title }}</a>
             @if ($developer && $dev_image)
             <a href="#" class="flex flex-col items-center ml-2 hover:scale-105">
                 <img class="h-10 w-10 rounded-full" src="{{ asset('storage/' . $dev_image) }}" alt="{{ $developer }}">

@@ -16,6 +16,7 @@
         "vite": "^6.2.4"
     },
     "dependencies": {
-        "npm": "^11.2.0"
+        "npm": "^11.2.0",
+        "tailwind-scrollbar-hide": "^2.0.0"
     }
 }

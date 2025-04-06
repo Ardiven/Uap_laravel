@@ -37,11 +37,17 @@ return new class extends Migration
             $table->foreignId('users_id')->constrained(table: 'users');
             $table->timestamps();
         });
-        Schema::create('librarys', function (Blueprint $table){
+        Schema::create('libraries', function (Blueprint $table){
             $table->id() -> primary();
+            $table->foreignId('game_id')->constrained(table: 'games');
+            $table->foreignId('user_id')->constrained(table: 'users');
+            $table->bigInteger('rating')->nullable();
+            $table->timestamps();
+        });
+        Schema::create('screenshots', function (Blueprint $table){
+            $table->id() -> primary();
+            $table->string('image');
             $table->foreignId('games_id')->constrained(table: 'games');
-            $table->foreignId('users_id')->constrained(table: 'users');
-            $table->bigInteger('rating');
             $table->timestamps();
         });
     }
