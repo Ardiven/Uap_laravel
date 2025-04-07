@@ -1,4 +1,4 @@
-@props(['title', 'developer', 'description', 'genres', 'image', 'screenshots'=>[], 'reviews'=>null, 'rating'=>null, 'id'=>null, 'library' => null, 'downloaded' => false])
+@props(['title', 'developer', 'description', 'genres', 'image', 'screenshots'=>[], 'reviews'=>null, 'rating'=>null, 'id'=>null, 'library' => null, 'downloaded' => false ,'download' => false])
 
 <main class="flex-1 bg-white px-8 py-10 overflow-auto no-scrollbar">
     <!-- Banner -->
@@ -12,7 +12,7 @@
     </div>
 
     <!-- Content -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <!-- Left Info -->
       <div class="md:col-span-2">
         <h2 class="text-2xl font-semibold mb-3">About This Game</h2>
@@ -57,15 +57,19 @@
           <p class="text-sm text-gray-500 mt-2 text-center">Offer ends soon</p>
         </div>
         @else
-          @if(!$downloaded)
-          <a href="{{ route('library.download', $id) }}" class="inline-block bg-cyan-600 text-white px-4 py-2 rounded hover:bg-cyan-700 max-w-max">
-            Download
-        </a>
-        
+          @if(!$download)
+          <p class="text-xl text-gray-500 mt-2 text-center">In your library</p>
           @else
-          <a href="{{ route('library.uninstall', $id) }}" class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 max-w-max">
-            uninstall
+            @if(!$downloaded && $download)
+            <a href="{{ route('library.markdownload', $id) }}" class="inline-block bg-cyan-600 text-white px-4 py-2 rounded hover:bg-cyan-700 max-w-max">
+              Download
           </a>
+          
+            @else
+            <a href="{{ route('library.uninstall', $id) }}" class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 max-w-max">
+              uninstall
+            </a>
+            @endif
           @endif
         @endif
         <div class="mt-6">
@@ -75,11 +79,11 @@
       </div>
     </div>
   </main>
-  @if(session('success'))
   @if(session('download'))
-    <script>
-        window.open("{{ route('library.download', $id) }}", "_blank");
-    </script>
+  <script>
+      window.open("{{ route('library.download', $id) }}", "_blank");
+  </script>
 @endif
+  @if(session('success'))
   <x-success>{{session('success')}}</x-success>
   @endif

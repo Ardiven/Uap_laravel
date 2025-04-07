@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Game;
 use Illuminate\Database\Eloquent\Model;
 
 class Library extends Model
@@ -11,7 +12,7 @@ class Library extends Model
 
     public function game()
     {
-        return $this->belongsTo(Games::class);
+        return $this->belongsTo(Game::class);
     
     }
     public function user(){

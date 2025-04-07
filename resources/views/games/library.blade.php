@@ -54,6 +54,7 @@
       :dev_image="$details->game->developer->image"
       :downloaded="$details->downloaded"
       :library="true"
+      :download="true"
       />
     @endif
   </main>

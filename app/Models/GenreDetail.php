@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class GenreDetails extends Model
+class GenreDetail extends Model
 {
     use HasFactory;
     public function game()
 {
-    return $this->belongsTo(Games::class, 'games_id');
+    return $this->belongsTo(Game::class, 'game_id');
 }
 
 public function genre()

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\games;
+use App\Models\Game;
 use App\Models\Library;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 
 class LibraryController extends Controller
@@ -15,7 +16,7 @@ class LibraryController extends Controller
         $sidebars = Library::where('user_id', auth()->user()->id)->get();
         return view('games.library', compact('sidebars'));
     }
-    public function addToLibrary(Request $request, games $game)
+    public function addToLibrary(Request $request, Game $game)
     {
         $user = auth()->user();
         
@@ -31,25 +32,30 @@ class LibraryController extends Controller
         $details = Library::where('user_id', auth()->user()->id)->where('game_id', $game_id)->first();
         return view('games.library', compact('sidebars', 'details'));
     }
-    public function download($game_id)
-{
-    $game = Games::findOrFail($game_id);
-
-    // Update status downloaded ke true di tabel library untuk user saat ini
-    $library = Library::where('game_id', $game_id)
-                ->where('user_id', Auth::id())
-                ->first();
+// Menandai sebagai downloaded & redirect
+public function markAsDownloaded($id) {
+    $library = Library::where('user_id', auth()->id())->where('game_id', $id)->first();
 
     if ($library) {
         $library->downloaded = true;
         $library->save();
     }
 
-    // Return file download
-    response()->download(public_path('storage/' . $game->image));
-
-    return back()->with('success', 'Game downloaded');
+    return back()->with('download', true);
 }
+
+// Mengirim file download
+public function download($id) {
+    $game = Game::findOrFail($id);
+    $filePath = public_path('storage/' . $game->image);
+
+    if (!file_exists($filePath)) {
+        abort(404, 'File tidak ditemukan');
+    }
+
+    return response()->download($filePath);
+}
+
     public function uninstall($game_id){
         $library = Library::where('game_id', $game_id)
                 ->where('user_id', Auth::id())

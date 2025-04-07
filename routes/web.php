@@ -22,6 +22,6 @@ Route::get('/games/{id}', [GamesController::class, 'show'])->middleware('auth')-
 Route::post('/library/add/{game}', [LibraryController::class, 'addToLibrary'])->name('library.add');
 Route::get('/library/{id}',[LibraryController::class, 'detailLibrary'])->name('library.detail');
 Route::get('/library/uninstall/{id}',[LibraryController::class, 'uninstall'])->name('library.uninstall');
-Route::post('/library/download/{id}', [LibraryController::class, 'markAsDownloaded'])->name('library.markdownload');
+Route::get('/library/download/{id}', [LibraryController::class, 'markAsDownloaded'])->name('library.markdownload');
 Route::get('/library/file/{id}', [LibraryController::class, 'download'])->name('library.download');
 

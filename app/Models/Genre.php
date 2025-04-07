@@ -10,12 +10,12 @@ class Genre extends Model
 
 
     public function genreDetails(){
-        return $this->hasMany(GenreDetails::class);
+        return $this->hasMany(GenreDetail::class);
     }
     // App\Models\Genre.php
     public function game()
     {
-        return $this->belongsToMany(Games::class, 'genre_details', 'genre_id', 'games_id');
+        return $this->belongsToMany(Game::class, 'genre_details', 'genre_id', 'game_id');
     }
 
 }

@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class developers extends Model
+class developer extends Model
 {
     public function game(){
-        return $this->hasMany(Games::class);
+        return $this->hasMany(Game::class);
     }
     
 }

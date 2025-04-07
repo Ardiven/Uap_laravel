@@ -13,42 +13,42 @@ return new class extends Migration
     {
         //
         Schema::create('games', function (Blueprint $table){
-            $table->id() -> primary();
+            $table->id();
             $table->string('title');
             $table->longText('description');
             $table->string('image');
-            $table->foreignId('developer_id')->constrained(table: 'developers');
+            $table->foreignId('developer_id')->constrained();
             $table->timestamps();
         });
         Schema::create('genres', function (Blueprint $table){
-            $table ->id() -> primary();
+            $table ->id();
             $table->string('name');
         });
         Schema::create('genre_details', function (Blueprint $table){
             $table->id() -> primary();
-            $table->foreignId('games_id')->constrained(table: 'games');
-            $table->foreignId('genre_id')->constrained(table: 'genres');
+            $table->foreignId('game_id')->constrained();
+            $table->foreignId('genre_id')->constrained();
             $table->timestamps();
         });
         Schema::create('reviews', function (Blueprint $table){
-            $table->id() -> primary();
+            $table->id();
             $table->string('content');
-            $table->foreignId('games_id')->constrained(table: 'games');
-            $table->foreignId('users_id')->constrained(table: 'users');
+            $table->foreignId('game_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
         Schema::create('libraries', function (Blueprint $table){
-            $table->id() -> primary();
-            $table->foreignId('game_id')->constrained(table: 'games');
-            $table->foreignId('user_id')->constrained(table: 'users');
+            $table->id();
+            $table->foreignId('game_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->bigInteger('rating')->nullable();
             $table->boolean('downloaded')->default(false);
             $table->timestamps();
         });
         Schema::create('screenshots', function (Blueprint $table){
-            $table->id() -> primary();
+            $table->id();
             $table->string('image');
-            $table->foreignId('games_id')->constrained(table: 'games');
+            $table->foreignId('game_id')->constrained();
             $table->timestamps();
         });
     }
@@ -58,6 +58,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+    Schema::dropIfExists('screenshots');
+    Schema::dropIfExists('libraries');
+    Schema::dropIfExists('reviews');
+    Schema::dropIfExists('genre_details');
+    Schema::dropIfExists('genres');
+    Schema::dropIfExists('games');
+
+
     }
 };

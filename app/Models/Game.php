@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class games extends Model
+class game extends Model
 {
     use HasFactory;
 
@@ -21,12 +21,12 @@ class games extends Model
     }
     public function developer()
     {
-        return $this->belongsTo(developers::class);
+        return $this->belongsTo(developer::class);
     }
     // App\Models\Games.php
     public function genreDetails()
     {
-        return $this->hasMany(GenreDetails::class, 'games_id');
+        return $this->hasMany(GenreDetail::class, 'game_id');
     }
     
     // Akses langsung ke Genre lewat relasi genreDetails
@@ -34,8 +34,8 @@ class games extends Model
     {
         return $this->hasManyThrough(
             Genre::class,           // Target model
-            GenreDetails::class,    // Perantara
-            'games_id',             // FK di GenreDetails yang mengarah ke Games
+            GenreDetail::class,    // Perantara
+            'game_id',             // FK di GenreDetails yang mengarah ke Games
             'id',                   // PK di Genre (tujuan akhir)
             'id',                   // PK di Games (sumber)
             'genre_id'              // FK di GenreDetails yang mengarah ke Genre
