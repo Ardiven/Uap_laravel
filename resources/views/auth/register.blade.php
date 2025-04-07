@@ -1,6 +1,7 @@
 @extends('layout.app')
+<x-navbar></x-navbar>
 @section('content')
-    <form action="{{ route('register') }}" method="POST">
+    <form action="{{ route(''.$role.'.Pregister') }}" method="POST">
         @csrf
         <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
             <div class="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -35,7 +36,7 @@
                 </div>
 
                 <div class="w-full flex justify-center">
-                <p>Sudah punya akun? <a href="{{ route('login') }}" class="hover:text-cyan-500">Login</a></p>
+                <p>Sudah punya akun? <a href="{{ route(''.$role.'.login') }}" class="hover:text-cyan-500">Login</a></p>
                 </div>
 
                 </div>

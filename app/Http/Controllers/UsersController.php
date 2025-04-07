@@ -14,7 +14,8 @@ class UsersController extends Controller
 {
     public function showLogin()
     {
-        return view('auth.login');
+        $role = "user";
+        return view('auth.login', compact('role'));
     }
     public function login(Request $request){
         $credentials = $request->validate([
@@ -30,7 +31,8 @@ class UsersController extends Controller
     }
     public function showRegister()
     {
-        return view('auth.register');
+        $role = "user";
+        return view('auth.register', compact('role'));
     }
 
     // Proses registrasi
@@ -48,7 +50,7 @@ class UsersController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
+        return redirect()->route('user.login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
     public function create(){
         return view('users.create');

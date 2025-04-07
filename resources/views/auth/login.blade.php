@@ -3,8 +3,12 @@
 @if(session('success'))
 <x-success>{{session('success')}}</x-success>
 @endif
+@if(session('email'))
+    <x-success>{{session('email')}}</x-success>
+
+@endif
 @section('content')
-    <form action="{{ route('login') }}" method="POST">
+    <form action="{{ route(''.$role.'.Plogin') }}" method="POST">
         @csrf
         <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12 ">
             <div class="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -35,7 +39,7 @@
                 </div>
 
                 <div class="w-full flex justify-center">
-                <p>Belum punya akun? <a href="{{ route('register') }}" class="hover:text-cyan-500">Daftar</a></p>
+                <p>Belum punya akun? <a href="{{ route(''.$role.'.register') }}" class="hover:text-cyan-500">Daftar</a></p>
                 </div>
 
                 </div>
