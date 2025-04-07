@@ -28,6 +28,9 @@ class game extends Model
     {
         return $this->hasMany(GenreDetail::class, 'game_id');
     }
+    public function screenshoot(){
+        return $this->hasMany(screenshoot::class);
+    }
     
     // Akses langsung ke Genre lewat relasi genreDetails
     public function genres()

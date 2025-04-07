@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Auth;
 class LibraryController extends Controller
 {
     public function showLibrary(){
-        $sidebars = Library::where('user_id', auth()->user()->id)->get();
+        $sidebars = Library::where('user_id', Auth::user()->id)->get();
         return view('games.library', compact('sidebars'));
     }
     public function addToLibrary(Request $request, Game $game)
     {
-        $user = auth()->user();
+        $user = Auth::user();
         
         Library::create([
             'user_id' => $user->id,
@@ -28,13 +28,13 @@ class LibraryController extends Controller
         return back()->with('success', 'Game added to library');
     }
     public function detailLibrary($game_id){
-        $sidebars = Library::where('user_id', auth()->user()->id)->get();
-        $details = Library::where('user_id', auth()->user()->id)->where('game_id', $game_id)->first();
+        $sidebars = Library::where('user_id', Auth::user()->id)->get();
+        $details = Library::where('user_id', Auth::user()->id)->where('game_id', $game_id)->first();
         return view('games.library', compact('sidebars', 'details'));
     }
 // Menandai sebagai downloaded & redirect
 public function markAsDownloaded($id) {
-    $library = Library::where('user_id', auth()->id())->where('game_id', $id)->first();
+    $library = Library::where('user_id', Auth::user())->where('game_id', $id)->first();
 
     if ($library) {
         $library->downloaded = true;

@@ -11,11 +11,10 @@ Route::get('/', function () {
 });
 Route::get('/login', [UsersController::class, 'showLogin'])->name('login');
 Route::post('/login', [UsersController::class, 'login']);
+Route::post('/logout', [UsersController::class, 'logout'])->name('logout');
 Route::get('/register', [UsersController::class, 'showRegister'])->name('register');
 Route::post('/register', [UsersController::class, 'register']);
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
+Route::get('/user/dashboard', [UsersController::class, 'dashboard'])->middleware('auth')->name('user.dashboard');
 Route::get('/games/index', [GamesController::class, 'index']) ->name('games.index');
 Route::get('/games/library', [LibraryController::class, 'showLibrary'])-> middleware('auth')->name('games.library');
 Route::get('/games/{id}', [GamesController::class, 'show'])->middleware('auth')->name('games.show');
@@ -24,4 +23,5 @@ Route::get('/library/{id}',[LibraryController::class, 'detailLibrary'])->name('l
 Route::get('/library/uninstall/{id}',[LibraryController::class, 'uninstall'])->name('library.uninstall');
 Route::get('/library/download/{id}', [LibraryController::class, 'markAsDownloaded'])->name('library.markdownload');
 Route::get('/library/file/{id}', [LibraryController::class, 'download'])->name('library.download');
+
 

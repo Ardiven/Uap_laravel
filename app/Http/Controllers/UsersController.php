@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Review;
+use App\Models\Library;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -90,6 +93,30 @@ class UsersController extends Controller
                 ->paginate(5);
                 return view('users.index', compact('users'));
     }
-
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('games.index');
+    }
+    public function dashboard(){
+        $review = Review::where('user_id', Auth::user()->id)->get();
+        $games = Library::where('user_id', Auth::user()->id)->get();
+        $playtime = 0;
+        foreach ($games as $game) {
+            if($game->downloaded){
+            $startTime = $game->pivot->created_at ?? $game->created_at;
+            $now = Carbon::now();
     
+            // Hitung durasi dalam jam
+            $hoursPlayed = $startTime ? $startTime->diffInHours($now) : 0;
+    
+            $playtime += $hoursPlayed;
+            }
+            
+        }
+        return view('user.dashboard', compact('review', 'games', 'playtime'));
+    }
+
 }

@@ -11,13 +11,9 @@
                 <span></span>
             </div>
             @auth
-            
-                <a href="#" class="space-y-4 xl:space-y-2 hover:scale-105 ">
-                    <img class="mx-auto rounded-full h-9 w-9" src="{{ asset('storage/' . (Auth::user()->image ?? 'user_image/default.jpg')) }}" alt="author avatar">
-                    <h5 class="text-gray-900 flex justify-center items-center flex-col  space-y-3 text-lg font-medium leading-6">{{ Auth::user()->name }}</h5>
-                </a>
-          
-            @endauth            
+            <x-profile/>
+            @endauth
+                
             @guest
             <a href="{{ route('login') }}"
                 class="text-white bg-gradient-to-r from-cyan-400 to-sky-500 hover:bg-gradient-to-br hover:scale-105 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 ">Log in</a>

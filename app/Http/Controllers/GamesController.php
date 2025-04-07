@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\Library;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GamesController extends Controller
 {
@@ -15,7 +16,7 @@ class GamesController extends Controller
     }
     public function show($id){
         $game = Game::find($id);
-        $library = Library::where('user_id', auth()->user()->id)->where('game_id', $game->id)->first();
+        $library = Library::where('user_id', Auth::user()->id)->where('game_id', $game->id)->first();
         return view('games.gameDetail', compact('game', 'library'));
     }
 }
