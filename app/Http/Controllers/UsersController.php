@@ -15,7 +15,7 @@ class UsersController extends Controller
     }
     public function login(Request $request){
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'name' => 'required',
             'password' => 'required'
         ]);
 
