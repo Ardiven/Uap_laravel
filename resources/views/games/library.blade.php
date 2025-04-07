@@ -31,6 +31,7 @@
     <!-- Main Content -->
     <main class="flex-1 p-4 overflow-y-auto">
     @if(Route::currentRouteName() == 'games.library')
+      <h3 class="text-2xl font-bold mb-4 px-3">All My Games</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-3 py-3">
       @foreach($sidebars as $game)
       <x-card
@@ -42,6 +43,7 @@
       @endforeach
     </div>
     @else
+    
       <x-gamedetail
       :image="$details->game->image"
       :title="$details->game->title"
@@ -50,6 +52,8 @@
       :genres="$details->game->genres"
       :developer="$details->game->developer->name"
       :dev_image="$details->game->developer->image"
+      :downloaded="$details->downloaded"
+      :library="true"
       />
     @endif
   </main>

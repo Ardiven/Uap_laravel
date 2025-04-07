@@ -1,4 +1,4 @@
-@props(['title', 'developer', 'description', 'genres', 'image', 'screenshots'=>[], 'reviews'=>null, 'rating'=>null, 'id'=>null])
+@props(['title', 'developer', 'description', 'genres', 'image', 'screenshots'=>[], 'reviews'=>null, 'rating'=>null, 'id'=>null, 'library' => null, 'downloaded' => false])
 
 <main class="flex-1 bg-white px-8 py-10 overflow-auto no-scrollbar">
     <!-- Banner -->
@@ -41,10 +41,11 @@
 
       <!-- Right Sidebar: Purchase Info -->
       <div class="bg-gray-100 p-6 rounded-lg shadow-md flex flex-col justify-between border border-gray-200">
+        @if (!$library)
         <div>
           <h3 class="text-xl font-bold mb-2">Available Now</h3>
           <p class="text-3xl font-semibold text-green-600 mb-4">FREE</p>
-
+          
           <form method="POST" action="{{ route('library.add', $id) }}">
             @csrf
             <button class="bg-cyan-600 text-white px-4 py-2 rounded hover:bg-cyan-700">
@@ -55,7 +56,18 @@
 
           <p class="text-sm text-gray-500 mt-2 text-center">Offer ends soon</p>
         </div>
-
+        @else
+          @if(!$downloaded)
+          <a href="{{ route('library.download', $id) }}" class="inline-block bg-cyan-600 text-white px-4 py-2 rounded hover:bg-cyan-700 max-w-max">
+            Download
+        </a>
+        
+          @else
+          <a href="{{ route('library.uninstall', $id) }}" class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 max-w-max">
+            uninstall
+          </a>
+          @endif
+        @endif
         <div class="mt-6">
           <h4 class="text-sm font-semibold mb-1">Platform</h4>
           <p class="text-sm text-gray-700">Windows</p>
@@ -64,5 +76,10 @@
     </div>
   </main>
   @if(session('success'))
+  @if(session('download'))
+    <script>
+        window.open("{{ route('library.download', $id) }}", "_blank");
+    </script>
+@endif
   <x-success>{{session('success')}}</x-success>
   @endif

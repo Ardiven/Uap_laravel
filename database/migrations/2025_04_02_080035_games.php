@@ -42,6 +42,7 @@ return new class extends Migration
             $table->foreignId('game_id')->constrained(table: 'games');
             $table->foreignId('user_id')->constrained(table: 'users');
             $table->bigInteger('rating')->nullable();
+            $table->boolean('downloaded')->default(false);
             $table->timestamps();
         });
         Schema::create('screenshots', function (Blueprint $table){

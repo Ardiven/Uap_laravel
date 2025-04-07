@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Games;
+use App\Models\Library;
+use Illuminate\Http\Request;
 
 class GamesController extends Controller
 {
@@ -14,6 +15,7 @@ class GamesController extends Controller
     }
     public function show($id){
         $game = Games::find($id);
-        return view('games.gameDetail', compact('game'));
+        $library = Library::where('user_id', auth()->user()->id)->where('game_id', $game->id)->first();
+        return view('games.gameDetail', compact('game', 'library'));
     }
 }

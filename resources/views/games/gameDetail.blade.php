@@ -10,6 +10,7 @@
 :developer="$game->developer->name"
 :dev_image="$game->developer->image"
 :url="route('games.show', $game->id)"
+:library="$library"
 />
 
 @endsection

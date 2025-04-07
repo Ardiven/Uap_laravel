@@ -31,4 +31,35 @@ class LibraryController extends Controller
         $details = Library::where('user_id', auth()->user()->id)->where('game_id', $game_id)->first();
         return view('games.library', compact('sidebars', 'details'));
     }
+    public function download($game_id)
+{
+    $game = Games::findOrFail($game_id);
+
+    // Update status downloaded ke true di tabel library untuk user saat ini
+    $library = Library::where('game_id', $game_id)
+                ->where('user_id', Auth::id())
+                ->first();
+
+    if ($library) {
+        $library->downloaded = true;
+        $library->save();
+    }
+
+    // Return file download
+    response()->download(public_path('storage/' . $game->image));
+
+    return back()->with('success', 'Game downloaded');
+}
+    public function uninstall($game_id){
+        $library = Library::where('game_id', $game_id)
+                ->where('user_id', Auth::id())
+                ->first();
+
+    if ($library) {
+        $library->downloaded = false;
+        $library->save();
+    }
+
+    return back()->with('success', 'Game uninstalled');
+}
 }
