@@ -1,5 +1,5 @@
 @extends('layout.app')
-<x-navbar></x-navbar>
+
 @section('content')
     <form action="{{ route(''.$role.'.Pregister') }}" method="POST">
         @csrf

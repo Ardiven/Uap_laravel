@@ -1,34 +1,48 @@
 <?php
 
-use App\Http\Controllers\DeveloperController;
-use Termwind\Components\Li;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\GamesController;
-use App\Http\Controllers\UsersController; 
 use App\Http\Controllers\LibraryController;
 
+// ------------------ HOME ------------------
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', [UsersController::class, 'showLogin'])->name('user.login');
-Route::post('/login', [UsersController::class, 'login'])->name('user.Plogin');
-Route::post('/logout', [UsersController::class, 'logout'])->name('user.logout');
-Route::get('/register', [UsersController::class, 'showRegister'])->name('user.register');
-Route::post('/register', [UsersController::class, 'register'])->name('user.Pregister');
-Route::get('/user/dashboard', [UsersController::class, 'dashboard'])->middleware('auth')->name('user.dashboard');
-Route::get('/games/index', [GamesController::class, 'index']) ->name('games.index');
-Route::get('/games/library', [LibraryController::class, 'showLibrary'])-> middleware('auth')->name('games.library');
-Route::get('/games/{id}', [GamesController::class, 'show'])->middleware('auth')->name('games.show');
-Route::post('/library/add/{game}', [LibraryController::class, 'addToLibrary'])->name('library.add');
-Route::get('/library/{id}',[LibraryController::class, 'detailLibrary'])->name('library.detail');
-Route::get('/library/uninstall/{id}',[LibraryController::class, 'uninstall'])->name('library.uninstall');
-Route::get('/library/download/{id}', [LibraryController::class, 'markAsDownloaded'])->name('library.markdownload');
-Route::get('/library/file/{id}', [LibraryController::class, 'download'])->name('library.download');
-Route::get('/uap/developer', [DeveloperController::class, 'dashboard'])->middleware('auth')->name('developer.dashboard');
-Route::get('/developer/login', [DeveloperController::class, 'showLogin'])->name('developer.login');
-Route::post('/developer/login', [DeveloperController::class, 'login'])->name('developer.Plogin');
-Route::post('/developer/logout', [DeveloperController::class, 'logout'])->name('developer.logout');
-Route::get('/developer/register', [DeveloperController::class, 'showRegister'])->name('developer.register');
-Route::post('/developer/register', [DeveloperController::class, 'register'])->name('developer.Pregister');
 
+// ------------------ USER AUTH ------------------
+Route::controller(UsersController::class)->group(function () {
+    Route::get('/login', 'showLogin')->name('user.login');
+    Route::post('/login', 'login')->name('user.Plogin');
+    Route::post('/logout', 'logout')->name('user.logout');
+    Route::get('/register', 'showRegister')->name('user.register');
+    Route::post('/register', 'register')->name('user.Pregister');
+    Route::get('/user/dashboard', 'dashboard')->middleware('auth')->name('user.dashboard');
+});
 
+// ------------------ DEVELOPER AUTH ------------------
+Route::prefix('developer')->controller(DeveloperController::class)->group(function () {
+    Route::get('/login', 'showLogin')->name('developer.login');
+    Route::post('/login', 'login')->name('developer.Plogin');
+    Route::post('/logout', 'logout')->name('developer.logout');
+    Route::get('/register', 'showRegister')->name('developer.register');
+    Route::post('/register', 'register')->name('developer.Pregister');
+    Route::get('/dashboard', 'dashboard')->middleware('auth:developer')->name('developer.dashboard');
+});
+
+// ------------------ GAMES ------------------
+Route::controller(GamesController::class)->group(function () {
+    Route::get('/games/index', 'index')->name('games.index');
+    Route::get('/games/{id}', 'show')->middleware('auth')->name('games.show');
+});
+
+// ------------------ LIBRARY ------------------
+Route::controller(LibraryController::class)->group(function () {
+    Route::get('/games/library', 'showLibrary')->middleware('auth')->name('games.library');
+    Route::post('/library/add/{game}', 'addToLibrary')->name('library.add');
+    Route::get('/library/{id}', 'detailLibrary')->name('library.detail');
+    Route::get('/library/uninstall/{id}', 'uninstall')->name('library.uninstall');
+    Route::get('/library/download/{id}', 'markAsDownloaded')->name('library.markdownload');
+    Route::get('/library/file/{id}', 'download')->name('library.download');
+});

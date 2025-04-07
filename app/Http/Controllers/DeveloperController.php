@@ -18,22 +18,19 @@ class DeveloperController extends Controller
         return view('auth.register', compact('role'));
     }
 
-    public function login(Request $request){
-        $credentials = $request->validate([
-            'name' => 'required',
-            'password' => 'required'
-        ]);
-
-        $user = developer::where('name', $request->name)->first();
-
-        if ($user && Hash::check($request->password, $user->password)) {
-            Auth::login($user);
+    public function login(Request $request)
+    {
+        $credentials = $request->only('name', 'password');
+    
+        if (Auth::guard('developer')->attempt($credentials)) {
             return redirect()->route('developer.dashboard');
         }
-
-
-        return back()->with(['email' => 'Email atau password salah']);
+    
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ]);
     }
+    
     public function register(Request $request)
     {
         $request->validate([
@@ -53,5 +50,9 @@ class DeveloperController extends Controller
     public function dashboard(){
         $developer = Auth::user();
         return view('developer.dashboard', compact('developer'));
+    }
+    public function logout(){
+        Auth::guard('developer')->logout();
+        return redirect()->route('developer.login');
     }
 }

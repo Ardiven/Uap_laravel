@@ -1,11 +1,11 @@
 @extends('layout.app')
-<x-navbar></x-navbar>
+@php
+$roled = $role=='user'? 'web' : 'developer';
+@endphp
+<x-navbar
+:roled="$roled"></x-navbar>
 @if(session('success'))
 <x-success>{{session('success')}}</x-success>
-@endif
-@if(session('email'))
-    <x-success>{{session('email')}}</x-success>
-
 @endif
 @section('content')
     <form action="{{ route(''.$role.'.Plogin') }}" method="POST">
