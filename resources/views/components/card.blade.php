@@ -9,7 +9,7 @@
     <div class="flex-1 px-4 py-3 flex flex-col justify-between">
         {{-- Title & Developer --}}
         <div class="flex items-start justify-between mb-3">
-            <a href="{{route('games.show', $id)}}" class="font-bold text-lg leading-snug text-gray-900 hover:text-cyan-500">{{ $title }}</a>
+            <a href="{{ $url }}" class="font-bold text-lg leading-snug text-gray-900 hover:text-cyan-500">{{ $title }}</a>
             @if ($developer && $dev_image)
             <a href="#" class="flex flex-col items-center ml-2 hover:scale-105">
                 <img class="h-10 w-10 rounded-full" src="{{ asset('storage/' . $dev_image) }}" alt="{{ $developer }}">

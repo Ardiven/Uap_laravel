@@ -20,3 +20,4 @@ Route::get('/games/index', [GamesController::class, 'index']) ->name('games.inde
 Route::get('/games/library', [LibraryController::class, 'showLibrary'])-> middleware('auth')->name('games.library');
 Route::get('/games/{id}', [GamesController::class, 'show'])->name('games.show');
 Route::post('/library/add/{game}', [LibraryController::class, 'addToLibrary'])->name('library.add');
+Route::get('/library/{id}',[LibraryController::class, 'detailLibrary'])->name('library.detail');

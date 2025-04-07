@@ -13,7 +13,7 @@
             @auth
             
                 <a href="#" class="space-y-4 xl:space-y-2 hover:scale-105 ">
-                    <img class="mx-auto rounded-full h-9 w-9" src="{{ asset('storage/' . Auth::user()->image) ?: '' }}" alt="author avatar">
+                    <img class="mx-auto rounded-full h-9 w-9" src="{{ asset('storage/' . (Auth::user()->image ?? 'user_image/default.jpg')) }}" alt="author avatar">
                     <h5 class="text-gray-900 flex justify-center items-center flex-col  space-y-3 text-lg font-medium leading-6">{{ Auth::user()->name }}</h5>
                 </a>
           
