@@ -29,6 +29,7 @@ Route::prefix('developer')->controller(DeveloperController::class)->group(functi
     Route::get('/register', 'showRegister')->name('developer.register');
     Route::post('/register', 'register')->name('developer.Pregister');
     Route::get('/dashboard', 'dashboard')->middleware('auth:developer')->name('developer.dashboard');
+    Route::post('/dashboard', 'update')->middleware('auth:developer')->name('developer.profile.update');
 });
 
 // ------------------ GAMES ------------------

@@ -1,141 +1,215 @@
 @extends('layout.app')
 
 @section('content')
+@php
+  $user = Auth::guard('developer')->user();
+  @endphp
 
-<div class="grid grid-cols-8  w-full h-full bg-back-50">
-    <div class="col-span-1 h-ful  l overflow-y-auto">
-      <div class="p-2 h-full w-full flex flex-col bg-white dark:bg-gray-900 border-r border-r-gray-200"><a href="/app">
-          <div class="flex justify-start items-center gap-2 py-2 px-4 cursor-pointer "><svg width="36" height="36"
-              viewBox="0 0 903 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M814.39 736.55L751.05 699.74L750.81 617.11L814.15 653.92L814.39 736.55Z" fill="#00717E"></path>
-              <path d="M520.46 997.94L457.12 961.13L456.86 869.58L520.2 906.39L520.46 997.94Z" fill="#00717E"></path>
-              <path d="M520.2 906.39L456.86 869.58L751.05 699.74L814.39 736.55L520.2 906.39Z" fill="#00B6CA"></path>
-              <path d="M608.06 681.21L544.72 644.4L838.91 474.55L902.25 511.36L608.06 681.21Z" fill="#00B6CA"></path>
-              <path d="M519.97 823.77L456.63 786.96L455.87 521.56L519.22 558.37L519.97 823.77Z" fill="#00717E"></path>
-              <path d="M519.22 558.37L455.87 521.56L838.41 300.7L901.75 337.51L519.22 558.37Z" fill="#00B6CA"></path>
-              <path
-                d="M901.75 337.51L902.01 429.05L607.83 598.9L608.06 681.21L902.25 511.36L903 777.08L520.46 997.94L520.2 906.39L814.39 736.55L814.15 653.92L519.97 823.77L519.22 558.37L901.75 337.51Z"
-                fill="#00A3B6"></path>
-              <path d="M75.75 554.2L139.09 517.4L138.34 784.69L75 821.5L75.75 554.2Z" fill="#1D49C5"></path>
-              <path d="M1.25 338.65L64.59 301.84L149.22 350.7L85.88 387.51L1.25 338.65Z" fill="#2152DC"></path>
-              <path d="M85.88 387.51L149.22 350.7L255.26 668.51L191.92 705.32L85.88 387.51Z" fill="#2459EF"></path>
-              <path d="M308.29 688.46L371.63 651.65L254.74 851.89L191.4 888.7L308.29 688.46Z" fill="#1D49C5"></path>
-              <path d="M383.77 559.5L447.11 522.69L445.87 962.24L382.53 999.05L383.77 559.5Z" fill="#1D49C5"></path>
-              <path d="M299.15 510.64L362.49 473.83L447.11 522.69L383.77 559.5L299.15 510.64Z" fill="#2152DC"></path>
-              <path
-                d="M383.77 559.5L382.53 999.05L307.53 955.76L308.29 688.46L191.4 888.7L75.75 554.2L75 821.5L0 778.2L1.25 338.65L85.88 387.51L191.92 705.32L299.15 510.64L383.77 559.5Z"
-                fill="#143389"></path>
-              <path d="M832.32 218.54L832.12 291.8L752.97 337.8L753.18 264.54L832.32 218.54Z" fill="#007DC5"></path>
-              <path d="M753.18 264.54L752.97 337.8L370.44 116.94L370.65 43.68L753.18 264.54Z" fill="#005789"></path>
-              <path d="M449.8 -2.31L832.32 218.54L753.18 264.54L370.65 43.68L449.8 -2.31Z" fill="#008CDC"></path>
-              <path d="M387.82 136.05L387.62 209.31L237.03 296.82L237.23 223.56L387.82 136.05Z" fill="#007DC5"></path>
-              <path d="M514.52 300.89L514.31 374.15L421.06 320.31L421.27 247.05L514.52 300.89Z" fill="#005789"></path>
-              <path d="M452.27 439.4L452.06 512.66L69.54 291.81L69.74 218.55L452.27 439.4Z" fill="#005789"></path>
-              <path
-                d="M602.86 351.89L531.42 393.41L452.27 439.4L452.06 512.66L531.21 466.67L602.65 425.15L681.8 379.15L682.01 305.89L602.86 351.89Z"
-                fill="#007DC5"></path>
-              <path
-                d="M421.27 247.05L500.41 201.05L682.01 305.89L602.86 351.89L531.42 393.41L452.27 439.4L69.74 218.55L299.48 85.04L387.82 136.05L237.23 223.56L443.08 342.4L514.52 300.89L421.27 247.05Z"
-                fill="#008CDC"></path>
-            </svg></div>
-        </a>
-        <div class="flex flex-col h-full overflow-y-auto overflow-x-hidden flex-grow pt-2 justify-between">
-          <div class="flex flex-col  space-y-1 mx-1 lg:mt-1 ">
-            <div class="px-5 pt-4 hidden lg:block">
-              <div class="flex flex-row items-center">
-                <div class="text-xs font-bold tracking-wide text-gray-600">Menu</div>
-              </div>
-            </div><a
-              class="flex flex-row items-center  justify-center lg:justify-start rounded-md h-12 focus:outline-none pr-3.5  lg:pr-6 font-semibold text-gray-500 hover:text-primary-400 cursor-pointer "
-              href="/app"><span class="inline-flex justify-center items-center ml-3.5"><svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24"><path fill="currentColor" d="M10.894 22h2.212c3.447 0 5.17 0 6.345-1.012s1.419-2.705 1.906-6.093l.279-1.937c.38-2.637.57-3.956.029-5.083s-1.691-1.813-3.992-3.183l-1.385-.825C14.2 2.622 13.154 2 12 2s-2.199.622-4.288 1.867l-1.385.825c-2.3 1.37-3.451 2.056-3.992 3.183s-.35 2.446.03 5.083l.278 1.937c.487 3.388.731 5.081 1.906 6.093S7.447 22 10.894 22" opacity=".5"></path><path fill="currentColor" d="M9.447 15.397a.75.75 0 0 0-.894 1.205A5.77 5.77 0 0 0 12 17.75a5.77 5.77 0 0 0 3.447-1.148a.75.75 0 0 0-.894-1.205A4.27 4.27 0 0 1 12 16.25a4.27 4.27 0 0 1-2.553-.853"></path></svg></span><span class="ml-0 lg:ml-2 text-sm tracking-wide truncate capitalize hidden lg:block">App</span></a><a
-              class="flex flex-row items-center  justify-center lg:justify-start rounded-md h-12 focus:outline-none pr-3.5  lg:pr-6 font-semibold text-gray-500 hover:text-primary-400 cursor-pointer "
-              href="/app/blogs"><span class="inline-flex justify-center items-center ml-3.5"><svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24" fill="none"><g opacity="0.50"><path d="M21 8H13C12.7348 8 12.4804 7.89464 12.2929 7.70711C12.1054 7.51957 12 7.26522 12 7C12 6.73478 12.1054 6.48043 12.2929 6.29289C12.4804 6.10536 12.7348 6 13 6H21C21.2652 6 21.5196 6.10536 21.7071 6.29289C21.8946 6.48043 22 6.73478 22 7C22 7.26522 21.8946 7.51957 21.7071 7.70711C21.5196 7.89464 21.2652 8 21 8ZM21 12H13C12.7348 12 12.4804 11.8946 12.2929 11.7071C12.1054 11.5196 12 11.2652 12 11C12 10.7348 12.1054 10.4804 12.2929 10.2929C12.4804 10.1054 12.7348 10 13 10H21C21.2652 10 21.5196 10.1054 21.7071 10.2929C21.8946 10.4804 22 10.7348 22 11C22 11.2652 21.8946 11.5196 21.7071 11.7071C21.5196 11.8946 21.2652 12 21 12Z" fill="currentColor"></path><path d="M21 16H3C2.73478 16 2.48043 15.8946 2.29289 15.7071C2.10536 15.5196 2 15.2652 2 15C2 14.7348 2.10536 14.4804 2.29289 14.2929C2.48043 14.1054 2.73478 14 3 14H21C21.2652 14 21.5196 14.1054 21.7071 14.2929C21.8946 14.4804 22 14.7348 22 15C22 15.2652 21.8946 15.5196 21.7071 15.7071C21.5196 15.8946 21.2652 16 21 16ZM13 20H3C2.73478 20 2.48043 19.8946 2.29289 19.7071C2.10536 19.5196 2 19.2652 2 19C2 18.7348 2.10536 18.4804 2.29289 18.2929C2.48043 18.1054 2.73478 18 3 18H13C13.2652 18 13.5196 18.1054 13.7071 18.2929C13.8946 18.4804 14 18.7348 14 19C14 19.2652 13.8946 19.5196 13.7071 19.7071C13.5196 19.8946 13.2652 20 13 20Z" fill="currentColor"></path></g><rect x="2" y="4" width="8" height="8" rx="2" fill="currentColor"></rect></svg></span><span class="ml-0 lg:ml-2 text-sm tracking-wide truncate capitalize hidden lg:block">Blogs</span></a><a
-              class="flex flex-row items-center  justify-center lg:justify-start rounded-md h-12 focus:outline-none pr-3.5  lg:pr-6 font-semibold text-gray-500 hover:text-primary-400 cursor-pointer "
-              href="/app/mails"><span class="inline-flex justify-center items-center ml-3.5"><svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24"><path fill="currentColor" d="M24 5a3 3 0 1 1-6 0a3 3 0 0 1 6 0m-6.766 2.464l-1.537 1.28c-1.026.856-1.738 1.447-2.34 1.834c-.582.375-.977.5-1.357.5s-.774-.125-1.357-.5c-.601-.386-1.314-.978-2.34-1.834L5.928 6.765a.825.825 0 0 0-1.056 1.268l2.416 2.014c.975.812 1.765 1.47 2.463 1.92c.726.466 1.434.762 2.25.762c.814 0 1.522-.296 2.249-.763c.697-.448 1.487-1.107 2.462-1.92l1.666-1.388a4.5 4.5 0 0 1-1.144-1.194"></path><path fill="currentColor" d="M18.454 6.587a.825.825 0 0 1 .958.959a3 3 0 0 1-.958-.959"></path><path fill="currentColor" d="M16.958 3.021C16.156 3 15.244 3 14.2 3H9.8C5.652 3 3.577 3 2.289 4.318S1 7.758 1 12s0 6.364 1.289 7.682S5.652 21 9.8 21h4.4c4.148 0 6.223 0 7.511-1.318S23 16.242 23 12c0-1.067 0-2-.02-2.82a4.4 4.4 0 0 1-1.98.468c-2.485 0-4.5-2.06-4.5-4.603c0-.726.165-1.413.458-2.024" opacity=".5"></path></svg></span><span class="ml-0 lg:ml-2 text-sm tracking-wide truncate capitalize hidden lg:block">Mail</span></a><a
-              class="flex flex-row items-center  justify-center lg:justify-start rounded-md h-12 focus:outline-none pr-3.5  lg:pr-6 font-semibold bg-primary-50 shadow-sm text-primary-400  "
-              href="/app/projects"><span class="inline-flex justify-center items-center ml-3.5"><svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24"><path fill="currentColor" d="M2 12c0 5.523 4.477 10 10 10h9.25a.75.75 0 0 0 0-1.5h-3.98A9.99 9.99 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12" opacity=".5"></path><path fill="currentColor" fill-rule="evenodd" d="M12 15.75a3.75 3.75 0 1 1 0-7.5a3.75 3.75 0 0 1 0 7.5" clip-rule="evenodd"></path><path fill="currentColor" d="M5.5 13a1 1 0 1 0 0-2a1 1 0 0 0 0 2M12 4.5a1 1 0 1 1 0 2a1 1 0 0 1 0-2m1 14a1 1 0 1 0-2 0a1 1 0 0 0 2 0m5.5-5.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2"></path></svg></span><span class="ml-0 lg:ml-2 text-sm tracking-wide truncate capitalize hidden lg:block">projects</span></a>
-          </div>
-          <div class="flex flex-col  space-y-1 mx-1 lg:mt-1 "><a
-              class="flex flex-row items-center  justify-center lg:justify-start rounded-md h-12 focus:outline-none pr-3.5  lg:pr-6 font-semibold text-gray-500 hover:text-primary-400 cursor-pointer "
-              href="/app/settings"><span class="inline-flex justify-center items-center ml-3.5"><svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.279 2.152C13.909 2 13.439 2 12.5 2s-1.408 0-1.779.152a2 2 0 0 0-1.09 1.083c-.094.223-.13.484-.145.863a1.62 1.62 0 0 1-.796 1.353a1.64 1.64 0 0 1-1.579.008c-.338-.178-.583-.276-.825-.308a2.03 2.03 0 0 0-1.49.396c-.318.242-.553.646-1.022 1.453c-.47.807-.704 1.21-.757 1.605c-.07.526.074 1.058.4 1.479c.148.192.357.353.68.555c.477.297.783.803.783 1.361s-.306 1.064-.782 1.36c-.324.203-.533.364-.682.556a2 2 0 0 0-.399 1.479c.053.394.287.798.757 1.605s.704 1.21 1.022 1.453c.424.323.96.465 1.49.396c.242-.032.487-.13.825-.308a1.64 1.64 0 0 1 1.58.008c.486.28.774.795.795 1.353c.015.38.051.64.145.863c.204.49.596.88 1.09 1.083c.37.152.84.152 1.779.152s1.409 0 1.779-.152a2 2 0 0 0 1.09-1.083c.094-.223.13-.483.145-.863c.02-.558.309-1.074.796-1.353a1.64 1.64 0 0 1 1.579-.008c.338.178.583.276.825.308c.53.07 1.066-.073 1.49-.396c.318-.242.553-.646 1.022-1.453c.47-.807.704-1.21.757-1.605a2 2 0 0 0-.4-1.479c-.148-.192-.357-.353-.68-.555c-.477-.297-.783-.803-.783-1.361s.306-1.064.782-1.36c.324-.203.533-.364.682-.556a2 2 0 0 0 .399-1.479c-.053-.394-.287-.798-.757-1.605s-.704-1.21-1.022-1.453a2.03 2.03 0 0 0-1.49-.396c-.242.032-.487.13-.825.308a1.64 1.64 0 0 1-1.58-.008a1.62 1.62 0 0 1-.795-1.353c-.015-.38-.051-.64-.145-.863a2 2 0 0 0-1.09-1.083" clip-rule="evenodd" opacity=".5"></path><path fill="currentColor" d="M15.523 12c0 1.657-1.354 3-3.023 3s-3.023-1.343-3.023-3S10.83 9 12.5 9s3.023 1.343 3.023 3"></path></svg></span><span class="ml-0 lg:ml-2 text-sm tracking-wide truncate capitalize hidden lg:block">Settings</span></a>
-          </div>
-        </div>
-        <div class="px-1">
-          <div
-            class="flex flex-row items-center  justify-center lg:justify-start rounded-md h-12 focus:outline-none pr-3.5  lg:pr-6 font-semibold  hover:text-primary-400 cursor-pointer text-red-400 hover:text-red-600">
-            <span class="inline-flex justify-center items-center ml-3.5"><svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24"><path fill="currentColor" d="M15 2h-1c-2.828 0-4.243 0-5.121.879C8 3.757 8 5.172 8 8v8c0 2.828 0 4.243.879 5.121C9.757 22 11.172 22 14 22h1c2.828 0 4.243 0 5.121-.879C21 20.243 21 18.828 21 16V8c0-2.828 0-4.243-.879-5.121C19.243 2 17.828 2 15 2" opacity=".6"></path><path fill="currentColor" d="M8 8c0-1.538 0-2.657.141-3.5H8c-2.357 0-3.536 0-4.268.732S3 7.143 3 9.5v5c0 2.357 0 3.535.732 4.268S5.643 19.5 8 19.5h.141C8 18.657 8 17.538 8 16z" opacity=".4"></path><path fill="currentColor" fill-rule="evenodd" d="M4.47 11.47a.75.75 0 0 0 0 1.06l2 2a.75.75 0 0 0 1.06-1.06l-.72-.72H14a.75.75 0 0 0 0-1.5H6.81l.72-.72a.75.75 0 1 0-1.06-1.06z" clip-rule="evenodd"></path></svg></span><span class="ml-2 text-sm tracking-wide truncate capitalize hidden lg:block">Logout</span>
-          </div>
-        </div>
+<div x-data="{ openSidebar: false, activeSection: 'dashboard' }" class="flex flex-col md:flex-row min-h-screen">
+  <!-- Sidebar -->
+  <aside class="bg-white shadow-lg transition-all duration-300 ease-in-out fixed md:static inset-y-0 left-0 z-50 w-20 md:w-64"
+         :class="{ 'w-64': openSidebar, 'hidden md:block': !openSidebar }">
+      <div class="p-4 flex items-center justify-between border-b">
+          <h1 :class="{ 'opacity-100': openSidebar || window.innerWidth >= 768, 'opacity-0 hidden': !openSidebar && window.innerWidth < 768 }" 
+              class="text-xl font-bold text-green-600 transition-opacity duration-300">UAP Landwind</h1>
+          <button @click="openSidebar = !openSidebar" class="md:hidden p-2 rounded-full hover:bg-gray-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+          </button>
       </div>
-    </div>
-    <div class="w-full h-full col-span-7">
-      <div class="w-full h-full flex flex-col  w- overflow-y-auto p-4  bg-white dark:bg-gray-900">
-        <div class="w-full h-full  flex flex-col bg-white dark:bg-gray-900">
-          <div class="w-full flex items-center justify-between">
-            <header class="py-4 flex items-start  flex-col">
-              <div class="flex items-start gap-2">
-                <div>
-                  <h1 class="text-xl font-bold">Projects</h1>
-                  <h5 class="text-sm text-gray-600"></h5>
-                </div>
+      <nav class="py-4">
+          <ul class="space-y-2">
+              <li>
+                  <a href="#" @click.prevent="activeSection = 'dashboard'; openSidebar = false" 
+                     class="flex items-center space-x-3 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors" 
+                     :class="{ 'bg-gray-100': activeSection === 'dashboard' }">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0l-2-2m2 2V4a1 1 0 00-1-1h-3a1 1 0 00-1 1z" />
+                      </svg>
+                      <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }" 
+                            class="text-gray-700 transition-opacity duration-300">Dashboard</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="#" @click.prevent="activeSection = 'orders'; openSidebar = false" 
+                     class="flex items-center space-x-3 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors" 
+                     :class="{ 'bg-gray-100': activeSection === 'orders' }">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                      </svg>
+                      <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }" 
+                            class="text-gray-700 transition-opacity duration-300">Games</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="#" @click.prevent="activeSection = 'profile'; openSidebar = false" 
+                     class="flex items-center space-x-3 px-4 py-2 hover:bg-gray-100 rounded-lg transition-colors" 
+                     :class="{ 'bg-gray-100': activeSection === 'profile' }">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span :class="{ 'block opacity-100': openSidebar || window.innerWidth >= 768, 'hidden opacity-0': !openSidebar && window.innerWidth < 768 }" 
+                            class="text-gray-700 transition-opacity duration-300">Profile</span>
+                  </a>
+              </li>
+          </ul>
+      </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-4 md:p-6 overflow-y-auto">
+      <!-- Mobile Menu Toggle -->
+      <div class="md:hidden flex justify-between items-center mb-4">
+          <h1 class="text-xl font-bold text-gray-800">UAP</h1>
+          <button @click="openSidebar = !openSidebar" class="p-2 rounded-full hover:bg-gray-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+          </button>
+      </div>
+
+      <!-- Dashboard Section -->
+      <div x-show="activeSection === 'dashboard'" class="space-y-6 ">
+          <header>
+              <h1 class="text-2xl font-bold text-gray-800">Welcome Back, John Doe!</h1>
+              <p class="text-gray-600">Here's what's happening with your account today.</p>
+          </header>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="bg-white p-4 rounded-lg shadow-md">
+                  <h2 class="text-lg font-semibold text-gray-700">Total Games Published</h2>
+                  <p class="text-2xl font-bold text-green-600">12</p>
               </div>
-            </header>
-            <div class="max-w-sm w-full flex items-center justify-center py-2 gap-2 z-50">
-              <div class="w-full flex relative flex-col gap-1">
-                <label class="font-semibold text-xs text-gray-400 "></label><input type="text" class="border rounded-lg px-3 py-2 mb-0 text-sm w-full outline-none focus:border-primary-500" placeholder="Buscar proyecto por título o ID" required="" value="">
+              <div class="bg-white p-4 rounded-lg shadow-md">
+                  <h2 class="text-lg font-semibold text-gray-700">Pending Games</h2>
+                  <p class="text-2xl font-bold text-yellow-600">3</p>
               </div>
-              <div>
-                <div
-                  class="bg-primary-600 hover:bg-primary-800 text-white flex justify-start items-center gap-1 py-2 px-3  focus:ring-offset-blue-200 w-full transition ease-in duration-200 text-center text-base  shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg outline-none cursor-pointer">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                      stroke-width="2" d="M5 12h7m7 0h-7m0 0V5m0 7v7"></path>
-                  </svg>Crear</div>
+              <div class="bg-white p-4 rounded-lg shadow-md">
+                  <h2 class="text-lg font-semibold text-gray-700">Total Games Downloaded</h2>
+                  <p class="text-2xl font-bold text-blue-600">500</p>
               </div>
-            </div>
           </div>
-          <div class="flex flex-col overflow-y-auto h-full">
-            <table class="min-w-full bg-white border undefined">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 h-6 sticky top-0 z-10 transition-all ease-in-out ">
+      </div>
+
+      <!-- Orders Section -->
+      <div x-show="activeSection === 'orders'" class="space-y-6 h-screen">
+        <header>
+            <h1 class="text-2xl font-bold text-gray-800">Your Orders</h1>
+            <p class="text-gray-600">View and manage your recent orders.</p>
+        </header>
+      
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <!-- Atur tinggi maksimum dan scroll hanya pada bagian isi tabel -->
+          <div class="overflow-auto no-scrollbar max-h-[75vh]">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50 sticky top-0 z-10">
                 <tr>
-                  <th class="px-2 2xl:px-6 py-3 bg-gray-200 w-8"></th>
-                  <th class="px-2 2xl:px-6 py-3 bg-gray-200">Project</th>
-                  <th class="px-2 2xl:px-6 py-3 bg-gray-200">Create At</th>
-                  <th class="px-2 2xl:px-6 py-3 bg-gray-200">State</th>
-                  <th class="px-2 2xl:px-6 py-3 bg-gray-200 w-6"></th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Name</th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Date</th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Status</th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Download</th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Actions</th>
+                
                 </tr>
               </thead>
-              <tbody class="undefined select-none">
-                <tr class="border-b">
-                  <td class="px-6 py-1.5 whitespace-nowrap text-sm  text-center"><input type="checkbox" class="w-4 h-4">
-                  </td>
-                  <td class="px-6 py-1.5 whitespace-nowrap text-sm">
-                    <div class="flex items-center gap-2"><img src="https://firebasestorage.googleapis.com/v0/b/amethgalarcio.appspot.com/o/images%2FCaptura%20de%20pantalla%202024-11-08%20151438.png?alt=media&amp;token=60ba8e16-f724-49d2-9e34-8c812ccd212b" alt="image" class="aspect-square rounded-lg object-cover h-16">
-                      <p class="font-bold">SendBot 🤖</p>
-                    </div>
-                  </td>
-                  <td class="px-6 py-1.5 whitespace-nowrap text-sm  text-center">mar, 5 nov de 2024</td>
-                  <td class="px-6 py-1.5 whitespace-nowrap text-sm  text-center">
-                    <span class="text-xs  me-2 px-2.5  py-2  bg-green-200 text-green-600 font-semibold rounded-lg shadow">publish</span>
-                  </td>
-                  <td class="px-6 py-1.5 whitespace-nowrap text-sm   flex justify-center items-center h-full gap-2">
-                    <div class="relative inline-block text-left select-none ">
-                      <div class="rounded-full py-4 hover:bg-gray-100 focus:outline- cursor-pointer "><svg
-                          xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
-                          <path fill="currentColor"
-                            d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2">
-                          </path>
-                        </svg></div>
-                    </div>
-                  </td>
-                </tr>
-                
+              <tbody class="divide-y divide-gray-200">
+                @for ($i = 0; $i < 50; $i++)
+                  <tr>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">#ORD12345</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">2023-10-10</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-green-600">Completed</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">$100.00</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 space-x-2">
+                      <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                      <form action="#" method="POST" class="inline">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" onclick="return confirm('Are you sure?')" class="text-red-600 hover:underline">
+                              Delete
+                          </button>
+                      </form>
+                    </td>                    
+                  </tr>
+                @endfor
               </tbody>
             </table>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+      
+
+      <!-- Profile Section -->
+      <div x-show="activeSection === 'profile'" class="space-y-6">
+          <header>
+              <h1 class="text-2xl font-bold text-gray-800">Your Profile</h1>
+              <p class="text-gray-600">Update your personal information and settings.</p>
+          </header>
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <form class="space-y-4" method="POST" enctype="multipart/form-data" action="{{route('developer.profile.update')}}">
+              <!-- CSRF Token kalau pakai Laravel -->
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            
+              <!-- Full Name -->
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                              focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" 
+                       placeholder="John Doe">
+              </div>
+            
+              <!-- Email Address -->
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                              focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" 
+                       placeholder="john.doe@example.com">
+              </div>
+            
+              <!-- Profile Image Upload -->
+              <div>
+                <label for="image" class="block text-sm font-medium text-gray-700">Profile Image</label>
+                <input type="file" name="image" id="image"
+                       class="mt-1 block w-full text-sm text-gray-500 
+                              file:mr-4 file:py-2 file:px-4
+                              file:rounded-md file:border-0
+                              file:text-sm file:font-semibold
+                              file:bg-green-50 file:text-green-700
+                              hover:file:bg-green-100">
+                <!-- Optional preview -->
+                @if ($user->image)
+                  <img src="{{ asset('storage/' . $user->image) }}" alt="Profile Image" class="mt-2 w-20 h-20 rounded-full">
+                @endif
+              </div>
+            
+              <!-- Password -->
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">New Password</label>
+                <input type="password" name="password" id="password" 
+                       class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                              focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" 
+                       placeholder="Leave blank if unchanged">
+              </div>
+              @if(session('error'))
+              <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span class="block sm:inline">{{ session('error') }}</span>
+              </div>
+              @endif
+            
+              <!-- Submit -->
+              <button type="submit" 
+                      class="w-full sm:w-auto inline-flex justify-center py-2 px-4 border border-transparent 
+                             shadow-sm text-sm font-medium rounded-md text-white bg-green-600 
+                             hover:bg-green-700 focus:outline-none focus:ring-2 
+                             focus:ring-offset-2 focus:ring-green-500">
+                Save Changes
+              </button>
+            </form>
+            
+          </div>
+      </div>
+  </main>
+</div>
 
 @endsection
