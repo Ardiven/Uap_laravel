@@ -51,6 +51,16 @@ return new class extends Migration
             $table->foreignId('game_id')->constrained();
             $table->timestamps();
         });
+        Schema::create('developers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('image')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
+use App\Models\Library;
 use App\Models\developer;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 
 class DeveloperController extends Controller
@@ -50,9 +52,12 @@ class DeveloperController extends Controller
         return redirect()->route('developer.login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
     public function dashboard(){
+        $games = Game::where('developer_id', Auth::guard('developer')->id())->get();
+        $gamesDownload = $this->gameDownload();
         $developer = Auth::guard('developer');
-        return view('developer.dashboard', compact('developer'));
+        return view('developer.dashboard', compact('developer', 'gamesDownload', 'games'));
     }
+
     public function logout(){
         Auth::guard('developer')->logout();
         return redirect()->route('developer.login');
@@ -101,5 +106,14 @@ class DeveloperController extends Controller
             return redirect()->back()->with('error', 'Failed to update profile: ' . $e->getMessage());
         }
         return redirect()->back()->with('success', 'Profile updated successfully!');
+    }
+    public function gameDownload(){
+        $developer = Auth::guard('developer');
+
+        $games = Game::withCount(['library as download_count' => function ($query) {
+            $query->where('downloaded', true);
+        }])->where('developer_id', $developer->id())->get();
+
+        return $games;
     }
 }
