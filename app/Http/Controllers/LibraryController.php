@@ -34,7 +34,7 @@ class LibraryController extends Controller
     }
 // Menandai sebagai downloaded & redirect
 public function markAsDownloaded($id) {
-    $library = Library::where('user_id', Auth::user())->where('game_id', $id)->first();
+    $library = Library::where('user_id', Auth::id())->where('game_id', $id)->first();
 
     if ($library) {
         $library->downloaded = true;

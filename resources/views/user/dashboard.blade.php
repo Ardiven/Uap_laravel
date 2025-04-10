@@ -43,7 +43,7 @@
 
     {{-- Navigasi Cepat --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a href="{{route('games.library')}}" class="bg-white border border-gray-200 hover:border-blue-500 p-6 rounded-lg shadow-sm transition">
+        <a href="{{route('library')}}" class="bg-white border border-gray-200 hover:border-blue-500 p-6 rounded-lg shadow-sm transition">
             <h3 class="text-xl font-semibold mb-2 text-gray-800">📚 Library</h3>
             <p class="text-gray-500 text-sm">Lihat dan mainkan game yang kamu miliki.</p>
         </a>

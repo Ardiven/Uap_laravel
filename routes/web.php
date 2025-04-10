@@ -35,12 +35,14 @@ Route::prefix('developer')->controller(DeveloperController::class)->group(functi
 // ------------------ GAMES ------------------
 Route::controller(GamesController::class)->group(function () {
     Route::get('/games/index', 'index')->name('games.index');
-    Route::get('/games/{id}', 'show')->middleware('auth')->name('games.show');
+    Route::get('/games/{id}', [GamesController::class, 'show'])
+    ->where('id', '[0-9]+') // hanya terima angka
+    ->name('games.show');
 });
 
 // ------------------ LIBRARY ------------------
 Route::controller(LibraryController::class)->group(function () {
-    Route::get('/games/library', 'showLibrary')->middleware('auth')->name('games.library');
+    Route::get('/library', 'showLibrary')->middleware('auth')->name('library');
     Route::post('/library/add/{game}', 'addToLibrary')->name('library.add');
     Route::get('/library/{id}', 'detailLibrary')->name('library.detail');
     Route::get('/library/uninstall/{id}', 'uninstall')->name('library.uninstall');
